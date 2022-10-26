@@ -1,0 +1,107 @@
+body {
+  background-color: #e5e5e5;
+  font-family: "Roboto", sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  border: none;
+  padding: 0;
+}
+
+header,
+.digitar-mensagem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: white;
+  height: 80px;
+  width: 100%;
+  padding: 0 22px;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+header .logo {
+  width: 75px;
+}
+
+.area-mensagens {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  height: calc(100vh - 160px);
+  width: 100%;
+  margin: 80px 0px;
+  overflow-y: scroll;
+}
+
+.digitar-mensagem {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.digitar-mensagem button {
+  margin-left: 5px;
+  flex-shrink: 0;
+}
+
+.digitar-mensagem input {
+  border: none;
+  height: 100%;
+  width: 100%;
+
+  font-size: 18px;
+  line-height: 21px;
+
+  color: black;
+}
+
+.digitar-mensagem input::placeholder {
+  color: black;
+  font-style: italic;
+}
+
+.msg {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 0px 9px;
+
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.msg--comum {
+  background-color: white;
+}
+
+.msg--privada {
+  background-color: #ffdede;
+}
+
+.msg--info {
+  background-color: #dcdcdc;
+}
+
+.msg__momento {
+  color: #aaaaaa;
+}
