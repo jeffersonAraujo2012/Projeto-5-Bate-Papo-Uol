@@ -1,5 +1,9 @@
+import { Mensagem } from "./models/Mensagem.js";
+
+let areaMensagens = document.querySelector(".area-mensagens");
 let nome = prompt("Qual o seu nome?");
 let intervalManterConexao;
+let intervalAtualizarMensagens;
 
 entrarNaSala(nome);
 
@@ -10,7 +14,11 @@ function entrarNaSala(nome) {
     })
     .then(async (resposta) => {
       if (resposta.status == 200) {
-        intervalManterConexao = await manterOnline(nome);
+        intervalManterConexao = manterOnline(nome);
+        intervalAtualizarMensagens = setInterval(
+          () => Mensagem.carregar(areaMensagens),
+          3000
+        );
       }
     })
     .catch((e) => {
@@ -27,6 +35,6 @@ function manterOnline() {
       .post("https://mock-api.driven.com.br/api/v6/uol/status", {
         name: nome,
       })
-      .then((resposta) => console.log(resposta));
+      .catch(() => console.log("Algo de errado ocorreu para se manter online"));
   }, 5000);
 }

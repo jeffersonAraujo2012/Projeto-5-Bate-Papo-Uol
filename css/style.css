@@ -47,6 +47,8 @@ header .logo {
 
   height: calc(100vh - 160px);
   width: 100%;
+
+  padding-top: 26px;
   margin: 80px 0px;
   overflow-y: scroll;
 }
@@ -83,22 +85,29 @@ header .logo {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 40px;
-  padding: 0px 9px;
+  padding: 0 9px;
+  margin-bottom: 4px;
+
+  background-color: white;
+}
+
+.msg p {
+  color: black;
+  margin: 12px 0px;
 
   font-size: 14px;
   line-height: 16px;
 }
 
-.msg--comum {
-  background-color: white;
+.msg strong {
+  font-weight: 700;
 }
 
-.msg--privada {
+.msg--private_message {
   background-color: #ffdede;
 }
 
-.msg--info {
+.msg--status {
   background-color: #dcdcdc;
 }
 
