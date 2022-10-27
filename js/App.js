@@ -38,3 +38,5 @@ function manterOnline() {
       .catch(() => console.log("Algo de errado ocorreu para se manter online"));
   }, 5000);
 }
+
+export default nome;
