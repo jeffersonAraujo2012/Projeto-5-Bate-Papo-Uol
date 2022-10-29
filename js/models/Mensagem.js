@@ -1,23 +1,32 @@
+import { Store } from "../Store.js";
+
 export class Mensagem {
+
   constructor(msg) {
     this.msg = msg;
   }
 
-  static enviar(msg, remetente, destinatario = "Todos") {
+  static _removerPrivadasAlheias(mensagens) {
+    return mensagens.filter((msg) => msg.to === "Todos" || msg.to === Store.nome);
+  }
+
+  static enviar(msg, remetente = Store.nome, destinatario = "Todos") {
+    const data = {
+      from: remetente,
+      to: destinatario,
+      text: msg,
+      type: destinatario === "Todos" ? "message" : "private-message",
+    };
     axios
-      .post("https://mock-api.driven.com.br/api/v6/uol/messages", {
-        from: remetente,
-        to: destinatario,
-        text: msg,
-        type: destinatario === "Todos" ? "message" : "private-message",
-      })
+      .post("https://mock-api.driven.com.br/api/v6/uol/messages", data)
       .then((res) => {
         if (res.status === 200) {
           let areaMensagens = document.querySelector(".area-mensagens");
           this.carregar(areaMensagens);
         }
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(data);
         alert("Você não está mais conectado");
         window.location.reload();
       });
@@ -28,6 +37,7 @@ export class Mensagem {
       .get("https://mock-api.driven.com.br/api/v6/uol/messages")
       .then((resposta) => resposta.data);
 
+    mensagensRecebidas = this._removerPrivadasAlheias(mensagensRecebidas);
     let novasMensagens = mensagensRecebidas.map((msg) => new Mensagem(msg));
     areaMensagens.innerHTML = "";
     novasMensagens.forEach((msg) => msg.render(areaMensagens));

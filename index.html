@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon" />
     <title>Bate-papo UOL</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,16 +16,25 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <div class="login">
+      <img src="./images/logo.svg" alt="logo uol" />
+      <input
+        type="text"
+        class="login__nome"
+        placeholder="Digite seu nome"
+        data-identifier="enter-name"
+      />
+      <button class="login__btn" data-identifier="enter-start">Entrar</button>
+    </div>
+
     <header>
-      <img src="./images/logo 1.png" alt="logo uol" />
+      <img src="./images/logo.svg" alt="logo uol" class="logo" />
       <button>
         <img src="./images/user.png" alt="contatos" />
       </button>
     </header>
 
-    <main class="area-mensagens">
-
-    </main>
+    <main class="area-mensagens"></main>
 
     <div class="digitar-mensagem">
       <input type="text" name="mensagem" placeholder="Escreva aqui..." />

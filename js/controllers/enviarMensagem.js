@@ -1,13 +1,18 @@
 import { Mensagem } from "../models/Mensagem.js";
-import nome from "../App.js";
+import { Store } from "../Store.js";
 
-const input = document.querySelector(".digitar-mensagem input")
+const input = document.querySelector(".digitar-mensagem input");
 const button = document.querySelector(".digitar-mensagem button");
 button.onclick = () => enviarMensagem();
 
-function enviarMensagem() {
-  console.log("CLICK!!!")
-  Mensagem.enviar(input.value, nome);
-}
+input.addEventListener('keypress', (e) => {
+  const teclaDigitada = e.key;
+  if (teclaDigitada === 'Enter'){
+    enviarMensagem();
+  }
+})
 
-export default enviarMensagem;
+function enviarMensagem() {
+  Mensagem.enviar(input.value, Store.nome);
+  input.value = "";
+}
