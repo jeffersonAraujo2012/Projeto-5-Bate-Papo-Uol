@@ -1,16 +1,25 @@
-import { Store } from "../Store.js";
+import { Sessao } from "../models/Sessao.js";
 
 export class Mensagem {
+  static _areaMensagens = document.querySelector(".area-mensagens");
+  static tipo = "message";
+  static tipoSelecionado = document.querySelector(".publica");
 
   constructor(msg) {
     this.msg = msg;
   }
 
-  static _removerPrivadasAlheias(mensagens) {
-    return mensagens.filter((msg) => msg.to === "Todos" || msg.to === Store.nome);
+  static get areaMensagens() {
+    return Mensagem._areaMensagens;
   }
 
-  static enviar(msg, remetente = Store.nome, destinatario = "Todos") {
+  static _removerPrivadasAlheias(mensagens) {
+    return mensagens.filter(
+      (msg) => msg.type !== "private_message" && msg.to !== Sessao.nome
+    );
+  }
+
+  static enviar(msg, remetente = Sessao.nome, destinatario = "Todos") {
     const data = {
       from: remetente,
       to: destinatario,
@@ -21,8 +30,7 @@ export class Mensagem {
       .post("https://mock-api.driven.com.br/api/v6/uol/messages", data)
       .then((res) => {
         if (res.status === 200) {
-          let areaMensagens = document.querySelector(".area-mensagens");
-          this.carregar(areaMensagens);
+          this.carregar();
         }
       })
       .catch((e) => {
@@ -32,24 +40,23 @@ export class Mensagem {
       });
   }
 
-  static async carregar(areaMensagens) {
+  static async carregar() {
     let mensagensRecebidas = await axios
       .get("https://mock-api.driven.com.br/api/v6/uol/messages")
       .then((resposta) => resposta.data);
 
     mensagensRecebidas = this._removerPrivadasAlheias(mensagensRecebidas);
+
     let novasMensagens = mensagensRecebidas.map((msg) => new Mensagem(msg));
-    areaMensagens.innerHTML = "";
-    novasMensagens.forEach((msg) => msg.render(areaMensagens));
+    Mensagem.areaMensagens.innerHTML = "";
+    novasMensagens.forEach((msg) => msg.render());
 
     //Rola a tela automaticamente
-    const alturaTotal = areaMensagens.scrollHeight;
-    areaMensagens.scrollTop = alturaTotal;
-
-    console.log(novasMensagens);
+    const alturaTotal = Mensagem.areaMensagens.scrollHeight;
+    Mensagem.areaMensagens.scrollTop = alturaTotal;
   }
 
-  render(area) {
+  render() {
     const view = document.createElement("div");
     view.classList.add("msg", `msg--${this.msg.type}`);
     view.innerHTML = /*html*/ `
@@ -60,6 +67,6 @@ export class Mensagem {
         <span>${this.msg.text}</span>
       </p>
     `;
-    area.appendChild(view);
+    Mensagem.areaMensagens.appendChild(view);
   }
 }
