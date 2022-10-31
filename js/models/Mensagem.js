@@ -27,6 +27,9 @@ export class Mensagem {
   }
 
   static enviar(msg, remetente = Sessao.nome, destinatario = "Todos") {
+    if (!msg) {
+      return;
+    }
     const data = {
       from: remetente,
       to: destinatario,
