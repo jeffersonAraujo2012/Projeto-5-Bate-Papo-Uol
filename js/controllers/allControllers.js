@@ -67,4 +67,10 @@ function selecionarTipo(e) {
     Mensagem.tipoSelecionado = e.currentTarget;
     e.currentTarget.classList.add("visibilidade--selecionada");
   }
+
+  if (e.currentTarget.classList.contains("privada")){
+    Mensagem.tipo = "private_message";
+  } else {
+    Mensagem.tipo = "message";
+  }
 }

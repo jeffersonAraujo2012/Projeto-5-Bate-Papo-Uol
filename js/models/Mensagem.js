@@ -14,9 +14,13 @@ export class Mensagem {
   }
 
   static _removerPrivadasAlheias(mensagens) {
-    return mensagens.filter(
-      (msg) => msg.type !== "private_message" && msg.to !== Sessao.nome
-    );
+    return mensagens.filter((msg) => {
+      const ehParaMim = msg.to == Sessao.nome || msg.to == "Todos";
+      return (
+        msg.type !== "private_message" ||
+        ehParaMim
+      );
+    });
   }
 
   static enviar(msg, remetente = Sessao.nome, destinatario = "Todos") {
@@ -24,7 +28,7 @@ export class Mensagem {
       from: remetente,
       to: destinatario,
       text: msg,
-      type: destinatario === "Todos" ? "message" : "private-message",
+      type: Mensagem.tipo,
     };
     axios
       .post("https://mock-api.driven.com.br/api/v6/uol/messages", data)
