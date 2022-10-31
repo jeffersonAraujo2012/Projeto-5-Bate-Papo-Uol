@@ -14,17 +14,17 @@ export class Participante {
   }
 
   static async carregar() {
-    console.log(Participante.participanteSelecionado);
+    //console.log(Participante.participanteSelecionado);
     let participantesRecebidos = await axios
       .get("https://mock-api.driven.com.br/api/v6/uol/participants")
       .then((res) => res.data);
 
-    console.log(participantesRecebidos);
+    //console.log(participantesRecebidos);
     let pAtivos = participantesRecebidos.map(
       (participante) => new Participante(participante.name)
     );
 
-    console.log(pAtivos);
+    //console.log(pAtivos);
     Participante.areaContatos.innerHTML = /*HTML*/ `
       <p>Escolha um contato para enviar mensagem:</p>
     `;
@@ -43,7 +43,7 @@ export class Participante {
         p = todos;
         Mensagem.tipo = "message";
       }
-      console.log(p);
+      //console.log(p);
       Participante.participanteSelecionado = p;
       p.elementHTML.classList.add("contato--selecionado");
     }
@@ -52,6 +52,7 @@ export class Participante {
   render() {
     const contato = this.elementHTML;
     contato.classList.add("contato");
+    contato.dataset.identifier = "participant";
 
     if (this.nome === "Todos") {
       contato.innerHTML = /*HTML*/ `
@@ -59,8 +60,8 @@ export class Participante {
         ${this.nome}
       `;
       if (!Participante.participanteSelecionado) {
-        console.log("ooooookkkk")
-        Participante.participanteSelecionado === this;
+        //console.log("ooooookkkk")
+        Participante.participanteSelecionado = this;
       }
     } else {
       contato.innerHTML = /*HTML*/ `

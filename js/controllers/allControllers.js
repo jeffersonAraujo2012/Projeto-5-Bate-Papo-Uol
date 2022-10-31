@@ -12,6 +12,8 @@ const fundoPreto = document.querySelector(".fundo-preto");
 const vPrivada = document.querySelector(".privada");
 const vPublica = document.querySelector(".publica");
 
+let tipoSelecionado = "message";
+
 input.addEventListener("keypress", (e) => {
   const teclaDigitada = e.key;
   if (teclaDigitada === "Enter") {
@@ -40,7 +42,7 @@ function enviarMensagem() {
   else {
     para = "Todos";
   }
-  Mensagem.enviar(input.value, Sessao.nome, para);
+  Mensagem.enviar(input.value, Sessao.nome, para, tipoSelecionado);
   input.value = "";
 }
 
@@ -75,8 +77,10 @@ function selecionarTipo(e) {
   }
 
   if (e.currentTarget.classList.contains("privada")) {
-    Mensagem.tipo = "private_message";
+    tipoSelecionado = "private_message";
   } else {
-    Mensagem.tipo = "message";
+    tipoSelecionado = "message";
   }
+
+  console.log(tipoSelecionado);
 }

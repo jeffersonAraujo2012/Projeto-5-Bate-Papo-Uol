@@ -3,7 +3,6 @@ import { Participante } from "./Participante.js";
 
 export class Mensagem {
   static _areaMensagens = document.querySelector(".area-mensagens");
-  static tipo = "message";
   static tipoSelecionado = document.querySelector(".publica");
 
   constructor(msg) {
@@ -26,7 +25,7 @@ export class Mensagem {
     });
   }
 
-  static enviar(msg, remetente = Sessao.nome, destinatario = "Todos") {
+  static enviar(msg, remetente = Sessao.nome, destinatario = "Todos", tipo) {
     if (!msg) {
       return;
     }
@@ -34,7 +33,7 @@ export class Mensagem {
       from: remetente,
       to: destinatario,
       text: msg,
-      type: Mensagem.tipo,
+      type: tipo,
     };
     axios
       .post("https://mock-api.driven.com.br/api/v6/uol/messages", data)
@@ -62,8 +61,8 @@ export class Mensagem {
     novasMensagens.forEach((msg) => msg.render());
 
     //Rola a tela automaticamente
-    const alturaTotal = Mensagem.areaMensagens.scrollHeight;
-    Mensagem.areaMensagens.scrollTop = alturaTotal;
+    const ultimaMsg = document.querySelector(".msg:last-child");
+    ultimaMsg.scrollIntoView();
   }
 
   render() {
