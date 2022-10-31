@@ -16,45 +16,49 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="login">
-      <img src="./images/logo.svg" alt="logo uol" />
-      <input
-        type="text"
-        class="login__nome"
-        placeholder="Digite seu nome"
-        data-identifier="enter-name"
-      />
-      <button class="login__btn" data-identifier="enter-start">Entrar</button>
-    </div>
+    <div class="wrapper">
+      <div class="login">
+        <img src="./images/logo.svg" alt="logo uol" />
+        <input
+          type="text"
+          class="login__nome"
+          placeholder="Digite seu nome"
+          data-identifier="enter-name"
+        />
+        <button class="login__btn" data-identifier="enter-start">Entrar</button>
+      </div>
 
-    <header>
-      <img src="./images/logo.svg" alt="logo uol" class="logo" />
-      <button>
-        <img src="./images/user.png" alt="contatos" />
-      </button>
-    </header>
+      <header>
+        <img src="./images/logo.svg" alt="logo uol" class="logo" />
+        <button>
+          <img src="./images/user.png" alt="contatos" />
+        </button>
+      </header>
 
-    <main class="area-mensagens"></main>
+      <main class="area-mensagens"></main>
 
-    <div class="digitar-mensagem">
-      <input type="text" name="mensagem" placeholder="Escreva aqui..." />
-      <button>
-        <img src="./images/enviar.png" alt="enviar mensagem" />
-      </button>
-    </div>
+      <div class="digitar-mensagem">
+        <input type="text" name="mensagem" placeholder="Escreva aqui..." />
+        <button>
+          <img src="./images/enviar.png" alt="enviar mensagem" />
+        </button>
+      </div>
 
-    <div class="fundo-preto"></div>
-    <div class="menu-lateral">
-      <div class="contatos">
-        <section class="enviar-para"></section>
-        <section class="visibilidade">
-          <p>Escolha a visibilidade:</p>
-          <span class="privada"
-            ><img src="./images/open.png" alt="open" class="icon-ajuste" />
-            Privada</span
-          >
-          <span class="publica visibilidade--selecionada"><img src="./images/lock.png" alt="open" /> Público</span>
-        </section>
+      <div class="fundo-preto"></div>
+      <div class="menu-lateral">
+        <div class="contatos">
+          <section class="enviar-para"></section>
+          <section class="visibilidade">
+            <p>Escolha a visibilidade:</p>
+            <span class="privada"
+              ><img src="./images/open.png" alt="open" class="icon-ajuste" />
+              Privada</span
+            >
+            <span class="publica visibilidade--selecionada"
+              ><img src="./images/lock.png" alt="open" /> Público</span
+            >
+          </section>
+        </div>
       </div>
     </div>
 
