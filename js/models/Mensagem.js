@@ -1,4 +1,5 @@
 import { Sessao } from "../models/Sessao.js";
+import { Participante } from "./Participante.js";
 
 export class Mensagem {
   static _areaMensagens = document.querySelector(".area-mensagens");
@@ -16,9 +17,11 @@ export class Mensagem {
   static _removerPrivadasAlheias(mensagens) {
     return mensagens.filter((msg) => {
       const ehParaMim = msg.to == Sessao.nome || msg.to == "Todos";
+      const ehMinha = msg.from == Sessao.nome;
       return (
         msg.type !== "private_message" ||
-        ehParaMim
+        ehParaMim ||
+        ehMinha
       );
     });
   }

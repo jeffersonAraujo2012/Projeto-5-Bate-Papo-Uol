@@ -1,3 +1,5 @@
+import { Mensagem } from "./Mensagem.js";
+
 export class Participante {
   static areaContatos = document.querySelector(".enviar-para");
   static participanteSelecionado = document.querySelector(
@@ -39,6 +41,7 @@ export class Participante {
       })[0];
       if (!p) {
         p = todos;
+        Mensagem.tipo = "message";
       }
       console.log(p);
       Participante.participanteSelecionado = p;

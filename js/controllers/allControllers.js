@@ -1,6 +1,6 @@
 import { Mensagem } from "../models/Mensagem.js";
 import { Store } from "../Store.js";
-import { Sessao } from "../models/Sessao.js"
+import { Sessao } from "../models/Sessao.js";
 import { exibirLoading } from "../App.js";
 import { Participante } from "../models/Participante.js";
 
@@ -12,12 +12,12 @@ const fundoPreto = document.querySelector(".fundo-preto");
 const vPrivada = document.querySelector(".privada");
 const vPublica = document.querySelector(".publica");
 
-input.addEventListener('keypress', (e) => {
+input.addEventListener("keypress", (e) => {
   const teclaDigitada = e.key;
-  if (teclaDigitada === 'Enter'){
+  if (teclaDigitada === "Enter") {
     enviarMensagem();
   }
-})
+});
 
 button.onclick = () => enviarMensagem();
 
@@ -32,17 +32,25 @@ vPrivada.onclick = (e) => selecionarTipo(e);
 vPublica.onclick = (e) => selecionarTipo(e);
 
 function enviarMensagem() {
-  Mensagem.enviar(input.value, Store.nome);
+  
+  let para;
+  if (Participante.participanteSelecionado){
+    para = Participante.participanteSelecionado.nome;
+  }
+  else {
+    para = "Todos";
+  }
+  Mensagem.enviar(input.value, Sessao.nome, para);
   input.value = "";
 }
 
 function entrar() {
-  Sessao.nome = document.querySelector('.login input').value;
+  Sessao.nome = document.querySelector(".login input").value;
   exibirLoading();
   Sessao.iniciar();
   Participante.carregar();
   //entrarNaSala(nome)
-};
+}
 
 function showMenuLateral() {
   const menuLateral = document.querySelector(".menu-lateral");
@@ -58,9 +66,7 @@ function fecharMenuLateral() {
 
 function selecionarTipo(e) {
   if (Mensagem.tipoSelecionado) {
-    Mensagem.tipoSelecionado.classList.remove(
-      "visibilidade--selecionada"
-    );
+    Mensagem.tipoSelecionado.classList.remove("visibilidade--selecionada");
     Mensagem.tipoSelecionado = e.currentTarget;
     e.currentTarget.classList.add("visibilidade--selecionada");
   } else {
@@ -68,7 +74,7 @@ function selecionarTipo(e) {
     e.currentTarget.classList.add("visibilidade--selecionada");
   }
 
-  if (e.currentTarget.classList.contains("privada")){
+  if (e.currentTarget.classList.contains("privada")) {
     Mensagem.tipo = "private_message";
   } else {
     Mensagem.tipo = "message";
