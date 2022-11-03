@@ -24,13 +24,14 @@
           class="login__nome"
           placeholder="Digite seu nome"
           data-identifier="enter-name"
+          data-test="input-name"
         />
-        <button class="login__btn" data-identifier="enter-start">Entrar</button>
+        <button class="login__btn" data-identifier="enter-start" data-test="send-name">Entrar</button>
       </div>
 
       <header>
         <img src="./images/logo.svg" alt="logo uol" class="logo" />
-        <button>
+        <button data-test="open-participants">
           <img src="./images/user.png" alt="contatos" />
         </button>
       </header>
@@ -38,8 +39,8 @@
       <main class="area-mensagens"></main>
 
       <div class="digitar-mensagem">
-        <input type="text" name="mensagem" placeholder="Escreva aqui..." />
-        <button>
+        <input type="text" name="mensagem" placeholder="Escreva aqui..." data-test="input-message" />
+        <button data-test="send-message">
           <img src="./images/enviar.png" alt="enviar mensagem" />
         </button>
       </div>
@@ -50,13 +51,14 @@
           <section class="enviar-para"></section>
           <section class="visibilidade">
             <p>Escolha a visibilidade:</p>
-            <span class="privada" data-identifier="visibility"
+            <span class="privada" data-identifier="visibility" data-test="private"
               ><img src="./images/open.png" alt="open" class="icon-ajuste" />
               Privada</span
             >
             <span
               class="publica visibilidade--selecionada"
               data-identifier="visibility"
+              data-test="public"
               ><img src="./images/lock.png" alt="open" /> Público</span
             >
           </section>

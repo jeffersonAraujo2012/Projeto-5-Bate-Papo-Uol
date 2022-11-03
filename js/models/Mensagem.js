@@ -68,6 +68,7 @@ export class Mensagem {
   render() {
     const view = document.createElement("div");
     view.classList.add("msg", `msg--${this.msg.type}`);
+    view.dataset.test = "message";
     view.innerHTML = /*html*/ `
       <p>
         <span class="msg__momento">(${this.msg.time})&nbsp</span> 

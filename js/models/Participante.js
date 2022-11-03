@@ -55,6 +55,7 @@ export class Participante {
     contato.dataset.identifier = "participant";
 
     if (this.nome === "Todos") {
+      contato.dataset.test = "all";
       contato.innerHTML = /*HTML*/ `
         <img src="./images/user.png" alt="icone usuario"/>
         ${this.nome}
@@ -64,6 +65,7 @@ export class Participante {
         Participante.participanteSelecionado = this;
       }
     } else {
+      contato.dataset.test = "participant";
       contato.innerHTML = /*HTML*/ `
         <img src="./images/user2.png" alt="icone usuario"/>
         ${this.nome}
